@@ -6,7 +6,9 @@ const createRoom = async (req, res) => {
     const { room_name, room_type, total_occupancy, total_bedrooms, total_bathrooms, summary, address, city, province, has_tv, has_kitchen, has_air_con,
         has_heating, has_internet, price, room_image, latitude, longitude } = req.body
 
-    let convertedRoomImg = (!room_image ? JSON.parse("[\"https://www.innsight.com//assets/images/bin/default-no-room-image.png\"]") : JSON.parse(room_image))
+    let convertedRoomImg = (!room_image ? ("[\"https://www.innsight.com//assets/images/bin/default-no-room-image.png\"]") : (room_image))
+
+    console.log(convertedRoomImg)
 
     const roomDeets = {
         room_name,
@@ -35,6 +37,7 @@ const createRoom = async (req, res) => {
         res.status(200).json(newRoom)
     } catch (error) {
         // res.status(500).json({ message: "Something went wrong while creating room." })
+        console.log(error)
         res.status(500).json({ message: error })
     }
 }
