@@ -32,9 +32,9 @@ app.use('/api/reservation', reservationRoutes)
 app.use('/api/review', reviewRoutes)
 
 // Catch all remaining req that are not recognized and returns it to the React App, so it can handle routing
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))
-})
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+// })
 
 db.sequelize.sync().then((req) => {
     app.listen(PORT, () => {
