@@ -67,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: 0
         },
         room_image: {
-            type: DataTypes.JSON,
+            type: DataTypes.STRING,
             allowNull: true
         },
         latitude: {
