@@ -181,6 +181,7 @@ const getAllRooms = async (req, res) => {
             res.status(200).json(toReturn)  // NOTE: RETURNS room_image as String, has to be parsed.
         }
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: "Something went wrong while fetching all rooms." })
     }
 }
