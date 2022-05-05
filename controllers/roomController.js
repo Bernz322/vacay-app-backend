@@ -150,7 +150,6 @@ const getAllRooms = async (req, res) => {
 
         if (allRooms) {
             const toReturn = allRooms.map(room => {
-                const images = JSON.parse(room?.room_image)
                 const temp = {
                     id: room.id,
                     room_name: room.room_name,
@@ -168,7 +167,7 @@ const getAllRooms = async (req, res) => {
                     has_heating: room.has_heating,
                     has_internet: room.has_internet,
                     price: room.price,
-                    room_image: images, // room_image returns a string so we have to convert it again.
+                    room_image: room.room_image, // room_image returns a string so we have to convert it again.
                     latitude: room.latitude,
                     longitude: room.longitude,
                     listing_status: room.listing_status,
