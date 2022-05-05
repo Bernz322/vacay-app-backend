@@ -36,7 +36,7 @@ app.use('/api/room', roomRoutes)
 app.use('/api/reservation', reservationRoutes)
 app.use('/api/review', reviewRoutes)
 
-db.sequelize.sync({force: true}).then((req) => {
+db.sequelize.sync().then((req) => {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`)
     })
