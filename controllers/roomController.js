@@ -190,11 +190,15 @@ const updateRoom = async (req, res) => {
     const { roomId, listing_status } = req.body
     const currentUser = req.user
 
+<<<<<<< HEAD
     const roomToUpdate = await Room.findOne({
         where: { id: roomId }, include: [
             { model: User, attributes: { exclude: ['password'] } },
         ]
     })
+=======
+    const roomToUpdate = await Room.findOne({ where: { id: roomId } })
+>>>>>>> d57a12e4f897270a858b6281d68093aa084ab5bb
 
     if (!roomToUpdate) return res.status(404).json({ message: "Room not found!" })
 
