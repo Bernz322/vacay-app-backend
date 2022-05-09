@@ -21,10 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.4",
-<<<<<<< HEAD
     "passport": "^0.5.2",
-=======
->>>>>>> d57a12e4f897270a858b6281d68093aa084ab5bb
     "sequelize": "^6.18.0",
     "sequelize-cli": "^6.4.1"
   }
