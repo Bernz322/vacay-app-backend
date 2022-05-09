@@ -218,7 +218,7 @@ const updateRoom = async (req, res) => {
                 address: updatedRoom.address,
                 city: updatedRoom.city,
                 province: updatedRoom.province,
-                has_tv: rupdatedRoomoupdatedRoomom.has_tv,
+                has_tv: updatedRoom.has_tv,
                 has_kitchen: updatedRoom.has_kitchen,
                 has_air_con: updatedRoom.has_air_con,
                 has_heating: updatedRoom.has_heating,
@@ -234,6 +234,7 @@ const updateRoom = async (req, res) => {
             }
         )
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: "Something went wrong while updating the user." })
     }
 }
