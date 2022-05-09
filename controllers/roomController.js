@@ -206,7 +206,33 @@ const updateRoom = async (req, res) => {
         if (listing_status) roomToUpdate.listing_status = listing_status.toString()
 
         const updatedRoom = await roomToUpdate.save()
-        return res.status(200).json(updatedRoom)
+        return res.status(200).json(
+            {
+                id: updatedRoom.id,
+                room_name: updatedRoom.room_name,
+                room_type: updatedRoom.room_type,
+                total_occupancy: updatedRoom.total_occupancy,
+                total_bedrooms: updatedRoom.total_bedrooms,
+                total_bathrooms: updatedRoom.total_bathrooms,
+                summary: updatedRoom.summary,
+                address: updatedRoom.address,
+                city: updatedRoom.city,
+                province: updatedRoom.province,
+                has_tv: rupdatedRoomoupdatedRoomom.has_tv,
+                has_kitchen: updatedRoom.has_kitchen,
+                has_air_con: updatedRoom.has_air_con,
+                has_heating: updatedRoom.has_heating,
+                has_internet: updatedRoom.has_internet,
+                price: updatedRoom.price,
+                room_image: JSON.parse(updatedRoom.room_image), // room_image returns a string so we have to convert it again.
+                latitude: updatedRoom.latitude,
+                longitude: updatedRoom.longitude,
+                createdAt: updatedRoom.createdAt,
+                updatedAt: updatedRoom.updatedAt,
+                listing_status: updatedRoom.listing_status,
+                User: updatedRoom.User
+            }
+        )
     } catch (error) {
         res.status(500).json({ message: "Something went wrong while updating the user." })
     }
