@@ -148,15 +148,15 @@ const getRoomReservation = async (req, res) => {
 
 const updateReservation = async (req, res) => {
     const { reservationId, reservation_status, guest_status } = req.body
-    const currentUser = req.user
 
-    const reservationToUpdate = await Reservation.findOne({ where: { id: reservationId } })
+    const reservationToUpdate = await Reservation.findOne({
+        where: { id: reservationId }, include: [
+            { model: User, attributes: { exclude: ['password', 'is_admin'] } },
+            { model: Room },
+        ]
+    })
 
     if (!reservationToUpdate) return res.status(404).json({ message: "Reservation not found!" })
-
-    // if (reservationToUpdate.UserId !== currentUser.id && !currentUser.is_admin) {
-    //     return res.status(401).json({ message: "Cannot update statuses as you are not the creator of this reservation." })
-    // }
 
     try {
         if (reservation_status && reservation_status !== undefined) reservationToUpdate.reservation_status = reservation_status.toString()
