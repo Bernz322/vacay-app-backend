@@ -3,23 +3,8 @@ const GithubStrategy = require("passport-github2").Strategy;
 const passport = require("passport");
 
 const { User } = require('./models');
-const { createToken } = require("./middlewares/jwt")
 
-const CALLBACK_URL = process.env.NODE_ENV !== 'production' ? `http://localhost:8000/api/auth/google/callback` : `https://vacaycaraga.netlify.app/api/auth/google/callback`;
-
-// passport.use(
-//   new GoogleStrategy(
-//     {
-//       clientID: GOOGLE_CLIENT_ID,
-//       clientSecret: GOOGLE_CLIENT_SECRET,
-//       callbackURL: "/auth/google/callback",
-//     },
-//     function (accessToken, refreshToken, profile, done) {
-//       done(null, profile);
-//     }
-//   )
-// );
-
+const CALLBACK_URL = process.env.NODE_ENV !== 'production' ? `http://localhost:8000/api/auth/google/callback` : `https://vacay-backend-jeff.herokuapp.com/api/auth/google/callback`;
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
