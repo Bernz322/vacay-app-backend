@@ -1,7 +1,10 @@
 const bcrypt = require('bcrypt');
+const querystring = require('querystring');
 const { createToken } = require("../middlewares/jwt")
 
 const { User } = require('../models');
+
+const CLIENT_URL = process.env.NODE_ENV !== 'production' ? `http://localhost:3000/` : `https://vacaycaraga.netlify.app/`;
 
 /**
  * @desc Used to check if email is already registered.
@@ -112,4 +115,27 @@ const login = async (req, res) => {
     }
 }
 
-module.exports = { login, register }
+const google = async (req, res) => {
+    // Successful authentication, redirect home.
+    if (!req.user.dataValues) return res.status(404).json({ message: "Something went wrong while logging through google. Try again" })
+    const data = {
+        id: req.user.dataValues.id,
+        name: req.user.dataValues.name,
+        email: req.user.dataValues.email,
+        phone_number: req.user.dataValues.phone_number,
+        description: req.user.dataValues.description,
+        profile_image: req.user.dataValues.profile_image,
+        token: createToken(req.user.dataValues),
+        time_stamp: Date.now(),
+        expire_time: 60 * 1000 * 60 * 3,
+    }
+    const queryParams = querystring.stringify(data)
+    // res.redirect(CLIENT_URL);
+    res.redirect(`${CLIENT_URL}?${queryParams}`)
+}
+
+const github = async (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect(CLIENT_URL);
+}
+module.exports = { login, register, google, github }

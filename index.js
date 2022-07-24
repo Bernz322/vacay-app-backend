@@ -2,6 +2,9 @@ require('dotenv').config()
 const express = require('express')
 const db = require("./models");
 const path = require('path')
+const session = require('express-session');
+const passportSetup = require("./passport");
+const passport = require("passport");
 
 const PORT = process.env.PORT || 8000
 
@@ -15,6 +18,13 @@ const reviewRoutes = require('./routes/reviewRoutes')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(session({
+    secret: "Our little secret.",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Serve all static files first
 app.use(express.static(path.resolve('../client/build')))
