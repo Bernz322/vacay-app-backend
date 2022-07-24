@@ -25,7 +25,6 @@ passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: CALLBACK_URL,
-    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
 },
     async function (accessToken, refreshToken, profile, cb) {
         // Check if user is already registered
