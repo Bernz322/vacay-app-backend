@@ -46,7 +46,7 @@ passport.use(
         {
             clientID: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
-            callbackURL: 'https://vacay-backend-jeff.herokuapp.com/api/auth/github/callback',
+            callbackURL: GITHUB_CALLBACK_URL,
         },
         async function (accessToken, refreshToken, profile, cb) {
             // Check if user is already registered
