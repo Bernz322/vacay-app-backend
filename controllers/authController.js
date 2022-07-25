@@ -116,7 +116,6 @@ const login = async (req, res) => {
 }
 
 const google = async (req, res) => {
-    // Successful authentication, redirect home.
     if (!req.user.dataValues) return res.status(404).json({ message: "Something went wrong while logging through google. Try again" })
     const data = {
         id: req.user.dataValues.id,
@@ -130,12 +129,25 @@ const google = async (req, res) => {
         expire_time: 60 * 1000 * 60 * 3,
     }
     const queryParams = querystring.stringify(data)
-    // res.redirect(CLIENT_URL);
+    // Successful authentication, redirect home.
     res.redirect(`${CLIENT_URL}?${queryParams}`)
 }
 
 const github = async (req, res) => {
+    if (!req.user.dataValues) return res.status(404).json({ message: "Something went wrong while logging through google. Try again" })
     // Successful authentication, redirect home.
-    res.redirect(CLIENT_URL);
+    const data = {
+        id: req.user.dataValues.id,
+        name: req.user.dataValues.name,
+        email: req.user.dataValues.email,
+        phone_number: req.user.dataValues.phone_number,
+        description: req.user.dataValues.description,
+        profile_image: req.user.dataValues.profile_image,
+        token: createToken(req.user.dataValues),
+        time_stamp: Date.now(),
+        expire_time: 60 * 1000 * 60 * 3,
+    }
+    const queryParams = querystring.stringify(data)
+    res.redirect(`${CLIENT_URL}?${queryParams}`)
 }
 module.exports = { login, register, google, github }
