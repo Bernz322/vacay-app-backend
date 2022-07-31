@@ -14,6 +14,7 @@ const authRoutes = require('./routes/authRoutes')
 const roomRoutes = require('./routes/roomRoutes')
 const reservationRoutes = require('./routes/reservationRoutes')
 const reviewRoutes = require('./routes/reviewRoutes')
+const contactRoutes = require('./routes/contactRoutes')
 
 const app = express()
 app.use(express.json())
@@ -45,6 +46,7 @@ app.use('/api/auth', authRoutes)
 app.use('/api/room', roomRoutes)
 app.use('/api/reservation', reservationRoutes)
 app.use('/api/review', reviewRoutes)
+app.use('/api/contact', contactRoutes)
 
 db.sequelize.sync().then((req) => {
     app.listen(PORT, () => {
